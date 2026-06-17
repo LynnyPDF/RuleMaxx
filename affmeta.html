@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AffMeta | RuleMaxx Ltd</title>
+  <meta name="description" content="AffMeta is RuleMaxx Ltd’s first strategic investment in audience intelligence, performance marketing and regulated digital entertainment." />
+  <style>
+    :root {
+      --navy-950: #07152b;
+      --navy-900: #0b1d3a;
+      --gold-500: #c9a24a;
+      --gold-400: #dfbe74;
+      --gold-300: #ecd7a3;
+      --ink: #e9edf7;
+      --muted: #a9b5cf;
+      --panel: rgba(14, 33, 66, 0.72);
+      --panel-border: rgba(223, 190, 116, 0.26);
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(223, 190, 116, 0.12), transparent 22%),
+        radial-gradient(circle at 85% 10%, rgba(80, 130, 255, 0.14), transparent 18%),
+        linear-gradient(180deg, #07152b 0%, #0a1831 28%, #0e1f3f 100%);
+      line-height: 1.55;
+    }
+
+    .site-shell { position: relative; z-index: 1; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 21, 43, 0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(223, 190, 116, 0.95), rgba(148, 108, 26, 0.96));
+      display: grid;
+      place-items: center;
+      color: #0a1831;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .brand-copy span {
+      color: var(--gold-300);
+      font-size: 0.82rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a,
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.96rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .footer-links a:hover {
+      color: var(--gold-300);
+    }
+
+    .btn,
+    button {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn:hover,
+    button:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      color: #0b1d3a;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+      box-shadow: 0 14px 30px rgba(201, 162, 74, 0.28);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(223, 190, 116, 0.22);
+    }
+
+    .hero { padding: 64px 0 30px; }
+
+    .eyebrow {
+      display:inline-flex;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(223, 190, 116, 0.12);
+      color: var(--gold-300);
+      border: 1px solid rgba(223, 190, 116, 0.18);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 11ch;
+    }
+
+    h1 span { color: var(--gold-300); }
+
+    .lead {
+      color: var(--muted);
+      max-width: 74ch;
+      font-size: 1.06rem;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .bullets {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bullet {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(223, 190, 116, 0.18);
+    }
+
+    .item strong {
+      display:block;
+      color: var(--gold-300);
+      margin-bottom: 8px;
+    }
+
+    .stats {
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display:block;
+      color: var(--gold-300);
+      font-size: 1.2rem;
+    }
+
+    .section { padding: 24px 0 70px; }
+
+    .cta {
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    footer { padding: 20px 0 46px; }
+
+    .footer-bar {
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .stats { grid-template-columns: 1fr; }
+      .nav { flex-direction: column; align-items: start; padding: 14px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="index.html#top" aria-label="RuleMaxx Ltd home">
+          <div class="brand-mark">RM</div>
+          <div class="brand-copy">
+            <strong>RULEMAXX LTD</strong>
+            <span>AffMeta</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#overview">Overview</a>
+          <a href="index.html#focus">Investment Focus</a>
+          <a href="index.html#approach">Approach</a>
+          <a href="affmeta.html#top">AffMeta</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <a class="btn btn-primary" href="index.html#contact">Request a Private Consultation</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="eyebrow">Strategic investment</div>
+          <h1>AffMeta is <span>RuleMaxx’s first strategic investment</span> in audience intelligence.</h1>
+          <p class="lead">
+            A strategic entry into audience ownership, performance marketing and regulated digital entertainment. AffMeta is presented as a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
+          </p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#memo">Explore the thesis</a>
+            <a class="btn btn-secondary" href="index.html#contact">Request the investor deck</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="memo">
+        <div class="container grid">
+          <article class="card">
+            <h2>The opportunity</h2>
+            <p>
+              AffMeta is an AI-powered audience onboarding platform designed to help brands convert fragmented attention into owned, segmented and commercially valuable audiences across sports, entertainment, travel and gaming.
+            </p>
+            <div class="stats">
+              <div class="stat"><strong>01</strong><span>Audience capture and consent-led onboarding.</span></div>
+              <div class="stat"><strong>02</strong><span>Segmentation and activation across partner ecosystems.</span></div>
+              <div class="stat"><strong>03</strong><span>Commercial intelligence for measurable routing and monetisation.</span></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Why RuleMaxx invested</h3>
+            <div class="bullets">
+              <div class="bullet">Rising customer acquisition costs across digital markets.</div>
+              <div class="bullet">Increasing importance of first-party data and audience ownership.</div>
+              <div class="bullet">Growing fragmentation of digital audiences across verticals.</div>
+            </div>
+            <div class="timeline" style="margin-top: 18px;">
+              <div class="item"><strong>Investment thesis</strong>AffMeta sits between operators, affiliates, creators and brands as the orchestration layer that transforms attention into audience ownership and commercial intelligence.</div>
+              <div class="item"><strong>Portfolio role</strong>It demonstrates that RuleMaxx is not merely investing passively — it is identifying emerging categories before the broader market recognizes them.</div>
+              <div class="item"><strong>Proof of concept</strong>A visual timeline of Monaco, Silverstone, Monza and Madrid can be added as a private case study journey.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card">
+          <h3>Request access</h3>
+          <p>Qualified investors and strategic partners may request the full investment memorandum and pitch deck.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="index.html#contact">Request AffMeta investor deck</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-bar">
+        <div>© RuleMaxx Ltd — AffMeta strategic investment page.</div>
+        <div class="footer-links">
+          <a href="index.html#overview">Overview</a>
+          <a href="index.html#focus">Investment Focus</a>
+          <a href="index.html#approach">Approach</a>
+          <a href="affmeta.html#top">AffMeta</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
