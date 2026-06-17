@@ -45,6 +45,17 @@
     .spot-badge{width:fit-content;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--gold-300);border:1px solid rgba(255,255,255,.08);text-transform:uppercase;letter-spacing:.11em;font-size:.8rem}
     .hero-image img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:var(--shadow)}
 
+    /* Contact form layout */
+    .contact-wrap{display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start;margin-top:8px}
+    .contact-card{border-radius:16px;padding:20px;background:var(--panel);border:1px solid var(--panel-border)}
+    .contact-card.contact-copy .small{color:var(--muted);display:block;margin-bottom:8px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact-card label{display:block;color:var(--muted);font-size:0.92rem}
+    .contact-card input,.contact-card textarea{width:100%;padding:8px 10px;margin-top:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:var(--ink)}
+    .contact-card textarea{min-height:110px;resize:vertical}
+    .form-note{margin-top:10px;color:var(--muted);font-size:0.9rem}
+    .contact-card .btn{margin-top:12px}
+
     @media (max-width:1080px){.hero-grid,.trust-band,.spotlight-grid,.contact-wrap,.process-grid,.pillars-grid{grid-template-columns:1fr}.hero-panel{min-height:auto}.spotlight-visual{min-height:320px;border-right:none;border-bottom:1px solid rgba(223,190,116,.16)}.panel-foot,.principles,.field-grid{grid-template-columns:1fr}.section-heading{flex-direction:column;align-items:start}}
     @media (max-width:780px){.nav{flex-direction:column;align-items:start;padding:14px 0}.nav-links{gap:14px}h1{max-width:12ch}.hero{padding-top:42px}.section{padding-bottom:70px}.node{position:static;width:100%}.orbital{height:auto;gap:14px;display:grid}.orbital::before,.orbital::after{display:none}.core{margin:10px auto}.panel-foot{grid-template-columns:1fr}}
   </style>
@@ -80,7 +91,7 @@
             <div class="eyebrow">Zurich-based investment strategy</div>
             <h1>Where <span>disciplined capital</span> meets high-conviction opportunity.</h1>
             <p>
-              RuleMaxx Ltd is an independent investment and asset management platform built for clients seeking intelligent exposure to select private market opportunities, strategic real estate, European financial markets and the next generation of regulated digital entertainment.
+              RuleMaxx Ltd is an independent investment and asset management platform built for clients seeking intelligent exposure to select private market opportunities, strategic real estate, and the next generation of regulated digital entertainment.
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#contact">Start the conversation</a>
@@ -186,39 +197,38 @@
             <div class="spotlight-grid">
               <div class="spotlight-visual">
                 <div class="spot-badge">First iGaming investment</div>
--                <div class="gridlines"></div>
-+                <div class="hero-image">
-+                  <img src="Picture2.png" alt="AffMeta visual" loading="lazy" />
-+                </div>
-                 <div class="visual-footer">
-                   <div class="visual-chip">Audience ownership</div>
-                   <div class="visual-chip">First-party data</div>
-                   <div class="visual-chip">Consent-based engagement</div>
-                 </div>
-               </div>
+                <div class="hero-image">
+                  <img src="Picture2.png" alt="AffMeta visual" loading="lazy" />
+                </div>
+                <div class="visual-footer">
+                  <div class="visual-chip">Audience ownership</div>
+                  <div class="visual-chip">First-party data</div>
+                  <div class="visual-chip">Consent-based engagement</div>
+                </div>
+              </div>
 
-               <div class="spotlight-copy">
-                 <h3>AffMeta</h3>
-                 <p class="lead">A strategic entry into audience ownership, performance marketing and regulated digital entertainment.</p>
-                 <p>
-                   AffMeta represents RuleMaxx Ltd’s first dedicated investment into the iGaming and digital entertainment sector — a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
-                 </p>
+              <div class="spotlight-copy">
+                <h3>AffMeta</h3>
+                <p class="lead">A strategic entry into audience ownership, performance marketing and regulated digital entertainment.</p>
+                <p>
+                  AffMeta represents RuleMaxx Ltd’s first dedicated investment into the iGaming and digital entertainment sector — a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
+                </p>
 
-                 <div class="bullet-list">
-                   <div class="bullet"><div class="dot"></div><div>Signals that RuleMaxx is identifying emerging categories before broader market recognition.</div></div>
-                   <div class="bullet"><div class="dot"></div><div>Positions AffMeta as a new audience onboarding category across sports, entertainment, travel and gaming.</div></div>
-                   <div class="bullet"><div class="dot"></div><div>Creates a compelling teaser that drives qualified traffic into the dedicated AffMeta page.</div></div>
-                 </div>
+                <div class="bullet-list">
+                  <div class="bullet"><div class="dot"></div><div>Signals that RuleMaxx is identifying emerging categories before broader market recognition.</div></div>
+                  <div class="bullet"><div class="dot"></div><div>Positions AffMeta as a new audience onboarding category across sports, entertainment, travel and gaming.</div></div>
+                  <div class="bullet"><div class="dot"></div><div>Creates a compelling teaser that drives qualified traffic into the dedicated AffMeta page.</div></div>
+                </div>
 
-                 <div class="hero-actions" style="margin-top: 10px;">
-                   <a class="btn btn-primary" href="affmeta.html#top">Explore the AffMeta investment</a>
-                   <a class="btn btn-secondary" href="affmeta.html#memo">View the investment thesis</a>
-                 </div>
-               </div>
-             </div>
-           </article>
-         </div>
-       </section>
+                <div class="hero-actions" style="margin-top: 10px;">
+                  <a class="btn btn-primary" href="affmeta.html#top">Explore the AffMeta investment</a>
+                  <a class="btn btn-secondary" href="affmeta.html#memo">View the investment thesis</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
 
       <section class="section" id="contact">
