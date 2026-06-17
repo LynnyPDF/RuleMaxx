@@ -185,6 +185,16 @@
       margin-top: 24px;
     }
 
+    /* new hero grid for affmeta hero */
+    .hero-grid-aff {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .hero-image img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: var(--shadow); }
+
     .bullets {
       display: grid;
       gap: 12px;
@@ -290,15 +300,21 @@
 
     <main id="top">
       <section class="hero">
-        <div class="container">
-          <div class="eyebrow">Strategic investment</div>
-          <h1>AffMeta is <span>RuleMaxx’s first strategic investment</span> in audience intelligence.</h1>
-          <p class="lead">
-            A strategic entry into audience ownership, performance marketing and regulated digital entertainment. AffMeta is presented as a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
-          </p>
-          <div class="cta">
-            <a class="btn btn-primary" href="#memo">Explore the thesis</a>
-            <a class="btn btn-secondary" href="index.html#contact">Request the investor deck</a>
+        <div class="container hero-grid-aff">
+          <div>
+            <div class="eyebrow">Strategic investment</div>
+            <h1>AffMeta is <span>RuleMaxx’s first strategic investment</span> in audience intelligence.</h1>
+            <p class="lead">
+              A strategic entry into audience ownership, performance marketing and regulated digital entertainment. AffMeta is presented as a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
+            </p>
+            <div class="cta">
+              <a class="btn btn-primary" href="#memo">Explore the thesis</a>
+              <a class="btn btn-secondary" href="index.html#contact">Request the investor deck</a>
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <img src="market%20scope.png" alt="Market scope graphic" />
           </div>
         </div>
       </section>
