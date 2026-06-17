@@ -57,6 +57,23 @@
     .form-actions{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-top:8px}
     .form-note{color:var(--muted);font-size:0.9rem}
 
+    /* STRONG OVERRIDE: fallback rules to force correct layout when other CSS overrides exist */
+    /* Additions here are deliberately specific and use !important to guarantee precedence */
+    .contact-wrap { display: grid !important; grid-template-columns: 1fr 380px !important; gap: 22px !important; align-items: start !important; min-width: 0 !important; }
+    .contact-wrap * { box-sizing: border-box !important; }
+    .contact-card { min-width: 0 !important; border-radius: 16px !important; }
+    .contact-card form { display: flex !important; flex-direction: column !important; gap: 12px !important; min-width: 0 !important; }
+    .field-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; min-width: 0 !important; }
+    .contact-card label { display: flex !important; flex-direction: column !important; color: var(--muted) !important; }
+    .contact-card input, .contact-card textarea { width: 100% !important; min-width: 0 !important; padding: 8px 10px !important; border-radius: 6px !important; }
+    .contact-card textarea { min-height: 110px !important; resize: vertical !important; }
+    .contact-card .btn { align-self: flex-end !important; margin-top: 12px !important; }
+    @media (max-width: 1080px) {
+      .contact-wrap { grid-template-columns: 1fr !important; }
+      .field-grid { grid-template-columns: 1fr !important; }
+      .contact-card .btn { width: 100% !important; align-self: stretch !important; }
+    }
+
     @media (max-width:1080px){.hero-grid,.trust-band,.spotlight-grid,.contact-wrap,.process-grid,.pillars-grid{grid-template-columns:1fr}.hero-panel{min-height:auto}.spotlight-visual{min-height:320px;border-right:none;border-bottom:1px solid rgba(223,190,116,.16)}.panel-foot,.principles,.field-grid{grid-template-columns:1fr}.section-heading{flex-direction:column;align-items:start}}
     @media (max-width:780px){.nav{flex-direction:column;align-items:start;padding:14px 0}.nav-links{gap:14px}h1{max-width:12ch}.hero{padding-top:42px}.section{padding-bottom:70px}.node{position:static;width:100%}.orbital{height:auto;gap:14px;display:grid}.orbital::before,.orbital::after{display:none}.core{margin:10px auto}.panel-foot{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr;padding:0}.form-actions{justify-content:stretch}.form-actions .btn{width:100%}}
   </style>
