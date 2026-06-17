@@ -1,818 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>RuleMaxx Ltd | Asset Management Portfolio</title>
   <style>
-    :root {
-      --navy-950: #07152b;
-      --navy-900: #0b1d3a;
-      --navy-800: #112a52;
-      --navy-700: #17386c;
-      --gold-500: #c9a24a;
-      --gold-400: #dfbe74;
-      --gold-300: #ecd7a3;
-      --ink: #e9edf7;
-      --muted: #a9b5cf;
-      --panel: rgba(14, 33, 66, 0.72);
-      --panel-border: rgba(223, 190, 116, 0.26);
-      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
-      --radius-xl: 26px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --max: 1200px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(223, 190, 116, 0.12), transparent 22%),
-        radial-gradient(circle at 85% 10%, rgba(80, 130, 255, 0.14), transparent 18%),
-        linear-gradient(180deg, #07152b 0%, #0a1831 28%, #0e1f3f 100%);
-      line-height: 1.55;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: auto;
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(12px);
-      opacity: 0.5;
-    }
-
-    body::before {
-      width: 260px;
-      height: 260px;
-      top: 8%;
-      right: 3%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(223, 190, 116, 0.18), transparent 68%);
-    }
-
-    body::after {
-      width: 320px;
-      height: 320px;
-      bottom: 12%;
-      left: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(64, 110, 220, 0.22), transparent 70%);
-    }
-
-    .site-shell {
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(7, 21, 43, 0.7);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 82px;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: var(--ink);
-    }
-
-    .brand-mark {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(223, 190, 116, 0.95), rgba(148, 108, 26, 0.96));
-      display: grid;
-      place-items: center;
-      box-shadow: 0 10px 30px rgba(201, 162, 74, 0.32);
-      color: #0a1831;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-    }
-
-    .brand-copy strong {
-      display: block;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-    }
-
-    .brand-copy span {
-      color: var(--gold-300);
-      font-size: 0.82rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-links a,
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.96rem;
-      transition: color 0.25s ease;
-    }
-
-    .nav-links a:hover,
-    .footer-links a:hover {
-      color: var(--gold-300);
-    }
-
-    .btn,
-    button {
-      appearance: none;
-      border: none;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    }
-
-    .btn:hover,
-    button:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      color: #0b1d3a;
-      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
-      box-shadow: 0 14px 30px rgba(201, 162, 74, 0.28);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-secondary {
-      color: var(--ink);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(223, 190, 116, 0.22);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .hero {
-      padding: 68px 0 60px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(223, 190, 116, 0.12);
-      color: var(--gold-300);
-      border: 1px solid rgba(223, 190, 116, 0.18);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.9rem, 7vw, 5.4rem);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-      max-width: 10ch;
-    }
-
-    .hero h1 span {
-      color: var(--gold-300);
-      display: inline-block;
-    }
-
-    .hero-copy p {
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 62ch;
-      margin: 20px 0 0;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .hero-panel,
-    .glass-card,
-    .pillar,
-    .process-card,
-    .spotlight,
-    .contact-card,
-    .metric-card {
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .hero-panel {
-      position: relative;
-      border-radius: 32px;
-      padding: 28px;
-      overflow: hidden;
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(120deg, rgba(255,255,255,0.02), transparent 45%),
-        radial-gradient(circle at 80% 18%, rgba(223,190,116,0.12), transparent 26%),
-        radial-gradient(circle at 20% 78%, rgba(94,143,255,0.16), transparent 24%);
-      z-index: 0;
-    }
-
-    .hero-panel > * { position: relative; z-index: 1; }
-
-    .signal {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      color: var(--gold-300);
-      background: rgba(255,255,255,0.04);
-      width: fit-content;
-      border: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.85rem;
-    }
-
-    .orbital {
-      position: relative;
-      height: 280px;
-      margin-top: 26px;
-      display: grid;
-      place-items: center;
-    }
-
-    .orbital::before,
-    .orbital::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(223, 190, 116, 0.24);
-    }
-
-    .orbital::before {
-      width: 280px;
-      height: 280px;
-    }
-
-    .orbital::after {
-      width: 184px;
-      height: 184px;
-      border-color: rgba(255,255,255,0.12);
-    }
-
-    .core {
-      width: 126px;
-      height: 126px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      background: radial-gradient(circle at 30% 30%, var(--gold-300), var(--gold-500) 58%, #8f6a25 100%);
-      color: #10213f;
-      font-weight: 800;
-      padding: 18px;
-      box-shadow: 0 18px 36px rgba(201, 162, 74, 0.3);
-      font-size: 0.95rem;
-      letter-spacing: 0.03em;
-    }
-
-    .node {
-      position: absolute;
-      width: 150px;
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(7, 21, 43, 0.85);
-      border: 1px solid rgba(223, 190, 116, 0.2);
-      font-size: 0.93rem;
-      text-align: center;
-      color: var(--ink);
-    }
-
-    .node small {
-      display: block;
-      color: var(--muted);
-      margin-top: 6px;
-      font-size: 0.78rem;
-    }
-
-    .node.one { top: 0; left: 50%; transform: translateX(-50%); }
-    .node.two { bottom: 28px; left: 10px; }
-    .node.three { bottom: 28px; right: 10px; }
-
-    .panel-foot {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .metric-card {
-      border-radius: 18px;
-      padding: 16px;
-      min-height: 110px;
-    }
-
-    .metric-card strong {
-      display: block;
-      color: var(--gold-300);
-      font-size: 0.86rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-
-    .metric-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .section {
-      padding: 34px 0 90px;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      gap: 22px;
-      align-items: end;
-      margin-bottom: 28px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.03em;
-    }
-
-    .section-heading p {
-      margin: 0;
-      max-width: 56ch;
-      color: var(--muted);
-    }
-
-    .trust-band {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .glass-card {
-      border-radius: var(--radius-xl);
-      padding: 28px;
-    }
-
-    .glass-card h3,
-    .pillar h3,
-    .process-card h3,
-    .spotlight h3,
-    .contact-copy h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-    }
-
-    .glass-card p,
-    .pillar p,
-    .process-card p,
-    .spotlight p,
-    .contact-copy p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .tag {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--ink);
-      font-size: 0.9rem;
-    }
-
-    .principles {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .principles .mini {
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(223, 190, 116, 0.18);
-    }
-
-    .principles .mini strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--gold-300);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .principles .mini span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .pillar {
-      border-radius: 24px;
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pillar::after {
-      content: "";
-      position: absolute;
-      inset: auto -40px -40px auto;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(223, 190, 116, 0.16), transparent 70%);
-      pointer-events: none;
-    }
-
-    .pillar-index {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: #0b1d3a;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
-      margin-bottom: 18px;
-    }
-
-    .pillar ul {
-      margin: 18px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .pillar li + li { margin-top: 10px; }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .process-card {
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .step {
-      color: var(--gold-300);
-      font-size: 0.84rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .spotlight {
-      border-radius: 30px;
-      overflow: hidden;
-    }
-
-    .spotlight-grid {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: 0;
-    }
-
-    .spotlight-visual {
-      min-height: 440px;
-      position: relative;
-      background:
-        radial-gradient(circle at 70% 15%, rgba(223,190,116,0.2), transparent 26%),
-        linear-gradient(145deg, #0a1730 0%, #122b56 55%, #0a1730 100%);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-right: 1px solid rgba(223,190,116,0.16);
-    }
-
-    .spot-badge {
-      width: fit-content;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      color: var(--gold-300);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      font-size: 0.8rem;
-    }
-
-    .gridlines {
-      flex: 1;
-      margin: 26px 0;
-      border-radius: 22px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background:
-        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, rgba(223,190,116,0.14), transparent 38%),
-        linear-gradient(160deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
-      background-size: 32px 32px, 32px 32px, auto, auto;
-    }
-
-    .gridlines::before,
-    .gridlines::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(1px);
-    }
-
-    .gridlines::before {
-      width: 180px;
-      height: 180px;
-      top: 26px;
-      left: 28px;
-      border: 1px solid rgba(223,190,116,0.25);
-    }
-
-    .gridlines::after {
-      width: 130px;
-      height: 130px;
-      right: 34px;
-      bottom: 30px;
-      border: 1px solid rgba(102,150,255,0.28);
-    }
-
-    .visual-footer {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .visual-chip {
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(223,190,116,0.14);
-      color: var(--ink);
-      font-size: 0.88rem;
-    }
-
-    .spotlight-copy {
-      padding: 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-      background: linear-gradient(180deg, rgba(11, 29, 58, 0.84), rgba(7, 21, 43, 0.9));
-    }
-
-    .spotlight-copy .lead {
-      font-size: 1.08rem;
-      color: var(--ink);
-    }
-
-    .bullet-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .bullet {
-      display: grid;
-      grid-template-columns: 16px 1fr;
-      gap: 12px;
-      align-items: start;
-      color: var(--muted);
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      margin-top: 7px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
-      box-shadow: 0 0 0 6px rgba(223, 190, 116, 0.1);
-    }
-
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .contact-card {
-      border-radius: 28px;
-      padding: 30px;
-    }
-
-    .contact-copy .small {
-      color: var(--gold-300);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.84rem;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .contact-highlights {
-      display: grid;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .contact-highlights div {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-    }
-
-    form {
-      display: grid;
-      gap: 16px;
-    }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    label {
-      display: grid;
-      gap: 8px;
-      font-size: 0.92rem;
-      color: var(--ink);
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(223, 190, 116, 0.22);
-      background: rgba(5, 14, 28, 0.52);
-      color: var(--ink);
-      padding: 14px 16px;
-      font: inherit;
-      outline: none;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: var(--gold-400);
-      box-shadow: 0 0 0 4px rgba(223, 190, 116, 0.12);
-    }
-
-    textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .form-note {
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-top: -4px;
-    }
-
-    footer {
-      padding: 20px 0 46px;
-    }
-
-    .footer-bar {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.92rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 22px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .trust-band,
-      .spotlight-grid,
-      .contact-wrap,
-      .process-grid,
-      .pillars-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-panel { min-height: auto; }
-      .spotlight-visual { min-height: 320px; border-right: none; border-bottom: 1px solid rgba(223,190,116,0.16); }
-      .panel-foot,
-      .principles,
-      .field-grid { grid-template-columns: 1fr; }
-      .section-heading { flex-direction: column; align-items: start; }
-    }
-
-    @media (max-width: 780px) {
-      .nav {
-        flex-direction: column;
-        align-items: start;
-        padding: 14px 0;
-      }
-
-      .nav-links { gap: 14px; }
-      h1 { max-width: 12ch; }
-      .hero { padding-top: 42px; }
-      .section { padding-bottom: 70px; }
-      .node { position: static; width: 100%; }
-      .orbital { height: auto; gap: 14px; display: grid; }
-      .orbital::before,
-      .orbital::after { display: none; }
-      .core { margin: 10px auto; }
-      .panel-foot { grid-template-columns: 1fr; }
-    }
+    :root{
+      --navy-950:#07152b;--navy-900:#0b1d3a;--navy-800:#112a52;--navy-700:#17386c;
+      --gold-500:#c9a24a;--gold-400:#dfbe74;--gold-300:#ecd7a3;--ink:#e9edf7;--muted:#a9b5cf;
+      --panel:rgba(14,33,66,0.72);--panel-border:rgba(223,190,116,0.26);--shadow:0 22px 60px rgba(0,0,0,0.35);
+      --radius-xl:26px;--radius-lg:20px;--radius-md:14px;--max:1200px;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at top left,rgba(223,190,116,0.12),transparent 22%),radial-gradient(circle at 85% 10%,rgba(80,130,255,0.14),transparent 18%),linear-gradient(180deg,#07152b 0%,#0a1831 28%,#0e1f3f 100%);line-height:1.55}
+    body::before,body::after{content:'';position:fixed;inset:auto;pointer-events:none;z-index:0;filter:blur(12px);opacity:.5}
+    body::before{width:260px;height:260px;top:8%;right:3%;border-radius:50%;background:radial-gradient(circle,rgba(223,190,116,0.18),transparent 68%)}
+    body::after{width:320px;height:320px;bottom:12%;left:0;border-radius:50%;background:radial-gradient(circle,rgba(64,110,220,0.22),transparent 70%)}
+    .site-shell{position:relative;z-index:1;overflow:hidden}.container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,21,43,.7);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:82px;gap:24px}.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+    .brand-mark{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,rgba(223,190,116,.95),rgba(148,108,26,.96));display:grid;place-items:center;box-shadow:0 10px 30px rgba(201,162,74,.32);color:#0a1831;font-weight:800;letter-spacing:.06em}
+    .brand-copy strong{display:block;font-size:1rem;letter-spacing:.05em}.brand-copy span{color:var(--gold-300);font-size:.82rem;letter-spacing:.09em;text-transform:uppercase}
+    .nav-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}.nav-links a,.footer-links a{color:var(--muted);text-decoration:none;font-size:.96rem;transition:color .25s}.nav-links a:hover,.footer-links a:hover{color:var(--gold-300)}
+    .btn,button{appearance:none;border:none;border-radius:999px;padding:14px 22px;font-size:.95rem;font-weight:700;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+    .btn:hover,button:hover{transform:translateY(-1px)}.btn-primary{color:#0b1d3a;background:linear-gradient(135deg,var(--gold-300),var(--gold-500));box-shadow:0 14px 30px rgba(201,162,74,.28);text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+    .btn-secondary{color:var(--ink);background:rgba(255,255,255,.04);border:1px solid rgba(223,190,116,.22);display:inline-flex;align-items:center;gap:10px}
+    .hero{padding:68px 0 60px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:rgba(223,190,116,.12);color:var(--gold-300);border:1px solid rgba(223,190,116,.18);font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+    h1{margin:0;font-size:clamp(2.9rem,7vw,5.4rem);line-height:.98;letter-spacing:-.04em;max-width:10ch}
+    .hero h1 span{color:var(--gold-300);display:inline-block}.hero-copy p{color:var(--muted);font-size:1.08rem;max-width:62ch;margin:20px 0 0}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .hero-panel,.glass-card,.pillar,.process-card,.spotlight,.contact-card,.metric-card{background:var(--panel);border:1px solid var(--panel-border);box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .hero-panel{position:relative;border-radius:32px;padding:28px;overflow:hidden;min-height:520px;display:flex;flex-direction:column;justify-content:space-between}
+    .hero-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.02),transparent 45%),radial-gradient(circle at 80% 18%,rgba(223,190,116,.12),transparent 26%),radial-gradient(circle at 20% 78%,rgba(94,143,255,.16),transparent 24%);z-index:0}
+    .hero-panel>*{position:relative;z-index:1}.signal{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;color:var(--gold-300);background:rgba(255,255,255,.04);width:fit-content;border:1px solid rgba(255,255,255,.08);font-size:.85rem}
+    .orbital{position:relative;height:280px;margin-top:26px;display:grid;place-items:center}.orbital::before,.orbital::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(223,190,116,.24)}
+    .orbital::before{width:280px;height:280px}.orbital::after{width:184px;height:184px;border-color:rgba(255,255,255,.12)}
+    .core{width:126px;height:126px;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 30% 30%,var(--gold-300),var(--gold-500) 58%,#8f6a25 100%);color:#10213f;font-weight:800;padding:18px;box-shadow:0 18px 36px rgba(201,162,74,.3);font-size:.95rem;letter-spacing:.03em}
+    .node{position:absolute;width:150px;border-radius:18px;padding:16px;background:rgba(7,21,43,.85);border:1px solid rgba(223,190,116,.2);font-size:.93rem;text-align:center;color:var(--ink)}
+    .node small{display:block;color:var(--muted);margin-top:6px;font-size:.78rem}.node.one{top:0;left:50%;transform:translateX(-50%)}.node.two{bottom:28px;left:10px}.node.three{bottom:28px;right:10px}
+    .panel-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.metric-card{border-radius:18px;padding:16px;min-height:110px}.metric-card strong{display:block;color:var(--gold-300);font-size:.86rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.metric-card p{margin:0;color:var(--muted);font-size:.92rem}
+
+    .section{padding:34px 0 90px}.section-heading{display:flex;justify-content:space-between;gap:22px;align-items:end;margin-bottom:28px}.section-heading h2{margin:0;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.03em}.section-heading p{margin:0;max-width:56ch;color:var(--muted)}
+    .spotlight{border-radius:30px;overflow:hidden}.spotlight-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:0}.spotlight-visual{min-height:440px;position:relative;background:radial-gradient(circle at 70% 15%,rgba(223,190,116,.2),transparent 26%),linear-gradient(145deg,#0a1730 0%,#122b56 55%,#0a1730 100%);padding:28px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(223,190,116,.16)}
+    .spot-badge{width:fit-content;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--gold-300);border:1px solid rgba(255,255,255,.08);text-transform:uppercase;letter-spacing:.11em;font-size:.8rem}
+    .hero-image img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:var(--shadow)}
+
+    @media (max-width:1080px){.hero-grid,.trust-band,.spotlight-grid,.contact-wrap,.process-grid,.pillars-grid{grid-template-columns:1fr}.hero-panel{min-height:auto}.spotlight-visual{min-height:320px;border-right:none;border-bottom:1px solid rgba(223,190,116,.16)}.panel-foot,.principles,.field-grid{grid-template-columns:1fr}.section-heading{flex-direction:column;align-items:start}}
+    @media (max-width:780px){.nav{flex-direction:column;align-items:start;padding:14px 0}.nav-links{gap:14px}h1{max-width:12ch}.hero{padding-top:42px}.section{padding-bottom:70px}.node{position:static;width:100%}.orbital{height:auto;gap:14px;display:grid}.orbital::before,.orbital::after{display:none}.core{margin:10px auto}.panel-foot{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -936,92 +170,6 @@
             </p>
           </div>
 
-          <div class="pillars-grid">
-            <article class="pillar">
-              <div class="pillar-index">01</div>
-              <h3>Private Market Startup Investments</h3>
-              <p>
-                RuleMaxx evaluates private market opportunities where innovation, founder capability and commercial timing create the potential for meaningful upside.
-              </p>
-              <ul>
-                <li>Early-stage and growth-stage opportunities.</li>
-                <li>Founder-led businesses with strong execution potential.</li>
-                <li>Platform, technology and data-enabled models.</li>
-                <li>Structured access to alternative growth sectors.</li>
-              </ul>
-            </article>
-
-            <article class="pillar">
-              <div class="pillar-index">02</div>
-              <h3>Real Assets Strategic Real Estate</h3>
-              <p>
-                Real estate remains an important pillar for capital preservation, prestige positioning and long-term portfolio stability.
-              </p>
-              <ul>
-                <li>Prime and selective real estate opportunities.</li>
-                <li>Asset-backed investment strategies.</li>
-                <li>Long-term value preservation.</li>
-                <li>Quality-led rather than volume-led acquisition thinking.</li>
-              </ul>
-            </article>
-
-            <article class="pillar">
-              <div class="pillar-index">03</div>
-              <h3>iGaming and Digital Entertainment</h3>
-              <p>
-                RuleMaxx is actively exploring investment opportunities within the regulated iGaming and digital entertainment sector.
-              </p>
-              <ul>
-                <li>Regulated iGaming and online entertainment.</li>
-                <li>Casino, sportsbook, affiliate and audience platforms.</li>
-                <li>CRM, retention, loyalty and data-led monetisation.</li>
-                <li>Compliance-aware commercial growth models.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="approach">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">Our method</div>
-              <h2>A structured approach to opportunity selection.</h2>
-            </div>
-            <p>
-              RuleMaxx applies a disciplined investment process designed to move from market understanding to opportunity evaluation, strategic positioning and long-term oversight.
-            </p>
-          </div>
-
-          <div class="process-grid">
-            <article class="process-card">
-              <span class="step">Step 01</span>
-              <h3>Define the opportunity</h3>
-              <p>We begin by understanding the market, the business model, the capital requirement and the strategic reason the opportunity exists now.</p>
-            </article>
-
-            <article class="process-card">
-              <span class="step">Step 02</span>
-              <h3>Assess commercial logic</h3>
-              <p>We evaluate whether the opportunity has clear demand, defensible positioning, realistic scalability and a credible route to value creation.</p>
-            </article>
-
-            <article class="process-card">
-              <span class="step">Step 03</span>
-              <h3>Understand risk and regulation</h3>
-              <p>In sectors such as financial markets, real estate and iGaming, sustainable growth requires disciplined risk assessment and regulatory awareness.</p>
-            </article>
-
-            <article class="process-card">
-              <span class="step">Step 04</span>
-              <h3>Position capital with intent</h3>
-              <p>Capital should not simply be deployed — it should be positioned. RuleMaxx focuses on alignment, timing and long-term strategic relevance.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section class="section" id="affmeta-teaser">
         <div class="container">
           <div class="section-heading">
@@ -1038,36 +186,40 @@
             <div class="spotlight-grid">
               <div class="spotlight-visual">
                 <div class="spot-badge">First iGaming investment</div>
-                <div class="gridlines"></div>
-                <div class="visual-footer">
-                  <div class="visual-chip">Audience ownership</div>
-                  <div class="visual-chip">First-party data</div>
-                  <div class="visual-chip">Consent-based engagement</div>
-                </div>
-              </div>
+-                <div class="gridlines"></div>
++                <div class="hero-image">
++                  <img src="Picture2.png" alt="AffMeta visual" loading="lazy" />
++                </div>
+                 <div class="visual-footer">
+                   <div class="visual-chip">Audience ownership</div>
+                   <div class="visual-chip">First-party data</div>
+                   <div class="visual-chip">Consent-based engagement</div>
+                 </div>
+               </div>
 
-              <div class="spotlight-copy">
-                <h3>AffMeta</h3>
-                <p class="lead">A strategic entry into audience ownership, performance marketing and regulated digital entertainment.</p>
-                <p>
-                  AffMeta represents RuleMaxx Ltd’s first dedicated investment into the iGaming and digital entertainment sector — a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
-                </p>
+               <div class="spotlight-copy">
+                 <h3>AffMeta</h3>
+                 <p class="lead">A strategic entry into audience ownership, performance marketing and regulated digital entertainment.</p>
+                 <p>
+                   AffMeta represents RuleMaxx Ltd’s first dedicated investment into the iGaming and digital entertainment sector — a forward-looking platform built around audience onboarding, first-party data, consent-based engagement and partner activation.
+                 </p>
 
-                <div class="bullet-list">
-                  <div class="bullet"><div class="dot"></div><div>Signals that RuleMaxx is identifying emerging categories before broader market recognition.</div></div>
-                  <div class="bullet"><div class="dot"></div><div>Positions AffMeta as a new audience onboarding category across sports, entertainment, travel and gaming.</div></div>
-                  <div class="bullet"><div class="dot"></div><div>Creates a compelling teaser that drives qualified traffic into the dedicated AffMeta page.</div></div>
-                </div>
+                 <div class="bullet-list">
+                   <div class="bullet"><div class="dot"></div><div>Signals that RuleMaxx is identifying emerging categories before broader market recognition.</div></div>
+                   <div class="bullet"><div class="dot"></div><div>Positions AffMeta as a new audience onboarding category across sports, entertainment, travel and gaming.</div></div>
+                   <div class="bullet"><div class="dot"></div><div>Creates a compelling teaser that drives qualified traffic into the dedicated AffMeta page.</div></div>
+                 </div>
 
-                <div class="hero-actions" style="margin-top: 10px;">
-                  <a class="btn btn-primary" href="affmeta.html#top">Explore the AffMeta investment</a>
-                  <a class="btn btn-secondary" href="affmeta.html#memo">View the investment thesis</a>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
+                 <div class="hero-actions" style="margin-top: 10px;">
+                   <a class="btn btn-primary" href="affmeta.html#top">Explore the AffMeta investment</a>
+                   <a class="btn btn-secondary" href="affmeta.html#memo">View the investment thesis</a>
+                 </div>
+               </div>
+             </div>
+           </article>
+         </div>
+       </section>
+
 
       <section class="section" id="contact">
         <div class="container">
@@ -1078,11 +230,6 @@
               <p>
                 For qualified investors, founders, strategic partners or sector specialists, RuleMaxx welcomes discreet conversations around investment opportunities, capital strategy and partnership alignment.
               </p>
-              <div class="contact-highlights">
-                <div>Confidential initial consultation.</div>
-                <div>Zurich-based strategic perspective.</div>
-                <div>Investment and partnership enquiries welcome.</div>
-              </div>
             </div>
 
             <div class="contact-card">
@@ -1092,6 +239,7 @@
                     Name
                     <input type="text" name="name" placeholder="Your name" />
                   </label>
+
                   <label>
                     Email
                     <input type="email" name="email" placeholder="you@example.com" />
